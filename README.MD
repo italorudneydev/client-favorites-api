@@ -1,7 +1,7 @@
 
-# Projeto de API de Clientes - Clean Architecture
+# Projeto de API de Clientes e seus favoritos
 
-Este projeto é uma API para gerenciar clientes (criar, atualizar, visualizar e remover), seguindo os princípios da **Clean Architecture**. A aplicação foi construída usando **Flask**, **SQLAlchemy** e Docker, e inclui exemplos de rotas e configuração completa para rodar o projeto com `docker-compose`.
+Este projeto é uma API para gerenciar clientes e seus produtos favoritos. A aplicação foi construída usando **Flask**, **SQLAlchemy** e Docker, e inclui exemplos de rotas e configuração completa para rodar o projeto com `docker-compose`.
 
 ## Requisitos do Sistema
 
