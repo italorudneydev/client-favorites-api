@@ -1,0 +1,33 @@
+services:
+  web:
+    build: .
+    command: flask run --host=0.0.0.0
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=app.entrypoints.app:create_app
+      - FLASK_ENV=development
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - cache
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: luizalabs
+      POSTGRES_PASSWORD: luizalabs@123
+      POSTGRES_DB: luizalabsdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  cache:
+    image: redis:6
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
