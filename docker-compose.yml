@@ -3,7 +3,7 @@ networks:
         driver: bridge
 
 volumes:
-  postgres_data:
+  luiza_data:
 
 services:
   web:
@@ -25,13 +25,14 @@ services:
       - luizalabs
 
   db:
-    image: postgres:13
+    image: postgres:16.3
+    container_name: luiza_db
     environment:
       POSTGRES_USER: luizalabs
-      POSTGRES_PASSWORD: luizalabs@123
+      POSTGRES_PASSWORD: luizalabs123
       POSTGRES_DB: luizalabsdb
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - luiza_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
