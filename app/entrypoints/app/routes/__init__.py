@@ -1,0 +1,3 @@
+# from .client_favorite_products_routes import create_client_favorite_products_bp
+from .product_routes import create_product_bp
+from .client_routes import create_client_bp

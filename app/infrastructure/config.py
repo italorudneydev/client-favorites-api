@@ -6,6 +6,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     CACHE_REDIS_HOST = os.getenv('CACHE_REDIS_HOST')
+    CACHE_REDIS_URL = os.getenv('CACHE_REDIS_URL')
     CACHE_REDIS_PORT = int(os.getenv('CACHE_REDIS_PORT', 6379))
 
 class DevelopmentConfig(Config):

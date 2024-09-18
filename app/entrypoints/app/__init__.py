@@ -1,17 +1,13 @@
-from itertools import product
-
 from flask import Flask
 from dotenv import load_dotenv
 import os
 from app.core.repositories.client_repository import ClientRepository
-from app.core.repositories.client_repository_interface import ClientRepositoryInterface
 from app.core.repositories.product_repository import ProductRepository
-from app.core.repositories.product_repository_interface import ProductRepositoryInterface
 from app.infrastructure.config import DevelopmentConfig, ProductionConfig, TestingConfig
 from app.infrastructure.extensions import db, jwt, cache
+from app.infrastructure.cache import RedisCache
 from app.infrastructure.database import init_db
-from app.entrypoints.app.routes.client_routes import register_client_routes
-from app.entrypoints.app.routes.client_favorite_products_routes import register_client_favorite_products_routes
+from app.entrypoints.app.routes import create_client_bp, create_product_bp
 
 load_dotenv()
 
@@ -32,11 +28,13 @@ def create_app(config_name=os.getenv('FLASK_ENV', 'development')):
 
     with app.app_context():
         session = db.session
+        redis_cache = RedisCache()
 
-    client_repository: ClientRepositoryInterface = ClientRepository(session)
-    product_repository: ProductRepositoryInterface = ProductRepository(session)
+        client_repository = ClientRepository(session)
+        product_repository = ProductRepository(session, redis_cache)
 
-    register_client_favorite_products_routes(app, client_repository, product_repository)
-    register_client_routes(app, client_repository)
+        app.register_blueprint(create_client_bp(client_repository), url_prefix='/api/client')
+        app.register_blueprint(create_product_bp(product_repository), url_prefix='/api')
+        # app.register_blueprint(create_client_favorite_products_bp(client_repository, product_repository), url_prefix='/api')
 
     return app
