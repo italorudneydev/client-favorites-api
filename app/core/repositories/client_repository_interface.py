@@ -19,3 +19,7 @@ class ClientRepositoryInterface(ABC):
     @abstractmethod
     def delete(self, email: str) -> None:
         pass
+
+    @abstractmethod
+    def save(self, client: Client) -> None:
+        pass

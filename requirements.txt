@@ -6,3 +6,4 @@ redis==5.0.0
 Flask-JWT-Extended==4.6.0
 python-dotenv==0.20.0
 flask-caching==2.3.0
+faker==28.4.1

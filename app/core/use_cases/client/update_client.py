@@ -1,4 +1,4 @@
-from app.core.repositories.client.client_repository_interface import ClientRepositoryInterface
+from app.core.repositories.client_repository_interface import ClientRepositoryInterface
 
 class UpdateClient:
     def __init__(self, client_repository: ClientRepositoryInterface):

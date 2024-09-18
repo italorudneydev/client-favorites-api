@@ -2,7 +2,7 @@ from abc import ABC
 
 from sqlalchemy.orm import Session
 from app.core.entities.client import Client
-from app.core.repositories.client.client_repository_interface import ClientRepositoryInterface
+from app.core.repositories.client_repository_interface import ClientRepositoryInterface
 
 
 class ClientRepository(ClientRepositoryInterface, ABC):
@@ -28,3 +28,8 @@ class ClientRepository(ClientRepositoryInterface, ABC):
             self.session.delete(client)
             self.session.commit()
 
+    def save(self, client: Client) -> None:
+        if client.id:
+            self.update(client)
+        else:
+            self.add(client)

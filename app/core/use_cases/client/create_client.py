@@ -1,6 +1,6 @@
 from app.core.entities.client import Client
 from app.core.services.validation import validate_email, validate_required_fields
-from app.core.repositories.client.client_repository_interface import ClientRepositoryInterface
+from app.core.repositories.client_repository_interface import ClientRepositoryInterface
 
 class CreateClient:
     def __init__(self, client_repository: ClientRepositoryInterface):

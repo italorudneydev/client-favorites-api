@@ -132,6 +132,25 @@ A API expõe as seguintes rotas para gerenciar clientes:
     "message": "Client deleted success"
   }
   ```
+  
+### Adicionar produto favorito ao cliente
+
+- **Rota**: `/client/favorites/add`
+- **Método**: `POST`
+- **Exemplo de chamada**:
+
+
+  ```bash
+  curl -X POST http://localhost:5000/client/favorites/add -H "Content-Type: application/json" -d '{"product_id": 1, "email": "italorudneydev@gmail.com"}'
+  ```
+
+- **Resposta** (em caso de sucesso):
+
+  ```json
+  {
+    "message": "Product added to favorites successfully"
+  }
+  ```
 
 ## Estrutura do Projeto
 
