@@ -18,4 +18,6 @@ class ProductionConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL_TEST', 'postgresql://myuser:mypassword@db/test_db')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL_TEST')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DEBUG = False

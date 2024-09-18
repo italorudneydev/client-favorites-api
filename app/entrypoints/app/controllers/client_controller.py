@@ -19,7 +19,6 @@ class ClientController:
             return jsonify({"error": str(e)}), HTTPStatus.BAD_REQUEST
 
     def get_client(self, email):
-        print(email)
         use_case = GetClient(self.repository)
         try:
             client = use_case.execute(email)

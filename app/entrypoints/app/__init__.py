@@ -10,13 +10,12 @@ from app.entrypoints.app.routes.client_routes import register_client_routes
 
 load_dotenv()
 
-def create_app():
+def create_app(config_name=os.getenv('FLASK_ENV', 'development')):
     app = Flask(__name__)
 
-    env = os.getenv('FLASK_ENV', 'development')
-    if env == 'production':
+    if config_name == 'production':
         app.config.from_object(ProductionConfig)
-    elif env == 'testing':
+    elif config_name == 'testing':
         app.config.from_object(TestingConfig)
     else:
         app.config.from_object(DevelopmentConfig)
