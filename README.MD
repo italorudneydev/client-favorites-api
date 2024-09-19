@@ -1,4 +1,3 @@
-
 # Projeto de API de Clientes e seus favoritos
 
 Este projeto é uma API para gerenciar clientes e seus produtos favoritos. A aplicação foi construída usando **Flask**, **SQLAlchemy** e Docker, e inclui exemplos de rotas e configuração completa para rodar o projeto com `docker-compose`.
@@ -62,12 +61,12 @@ A API expõe as seguintes rotas para gerenciar clientes:
 
 ### Criar um Cliente (POST)
 
-- **Rota**: `/clients`
+- **Rota**: `/api/client`
 - **Método**: `POST`
 - **Exemplo de chamada**:
 
   ```bash
-  curl -X POST http://localhost:5000/clients -H "Content-Type: application/json" -d '{"name": "John Doe", "email": "john@example.com"}'
+  curl -X POST http://localhost:5000/api/client -H "Content-Type: application/json" -d '{"name": "John Doe", "email": "john@example.com"}'
   ```
 
 - **Resposta** (em caso de sucesso):
@@ -80,12 +79,12 @@ A API expõe as seguintes rotas para gerenciar clientes:
 
 ### Atualizar um Cliente (PUT)
 
-- **Rota**: `/clients/<client_id>`
+- **Rota**: `/api/client/<client_id>`
 - **Método**: `PUT`
 - **Exemplo de chamada**:
 
   ```bash
-  curl -X PUT http://localhost:5000/clients/1 -H "Content-Type: application/json" -d '{"name": "Jane Doe", "email": "jane@example.com"}'
+  curl -X PUT http://localhost:5000/api/client/1 -H "Content-Type: application/json" -d '{"name": "Jane Doe", "email": "jane@example.com"}'
   ```
 
 - **Resposta** (em caso de sucesso):
@@ -98,12 +97,12 @@ A API expõe as seguintes rotas para gerenciar clientes:
 
 ### Visualizar um Cliente (GET)
 
-- **Rota**: `/clients/<client_id>`
+- **Rota**: `/api/client/<client_id>`
 - **Método**: `GET`
 - **Exemplo de chamada**:
 
   ```bash
-  curl http://localhost:5000/clients/1
+  curl http://localhost:5000/api/client/1
   ```
 
 - **Resposta** (em caso de sucesso):
@@ -117,12 +116,12 @@ A API expõe as seguintes rotas para gerenciar clientes:
 
 ### Remover um Cliente (DELETE)
 
-- **Rota**: `/clients/<client_id>`
+- **Rota**: `/api/client/<client_id>`
 - **Método**: `DELETE`
 - **Exemplo de chamada**:
 
   ```bash
-  curl -X DELETE http://localhost:5000/clients/1
+  curl -X DELETE http://localhost:5000/api/client/1
   ```
 
 - **Resposta** (em caso de sucesso):
@@ -160,15 +159,19 @@ Aqui está uma visão geral da estrutura de diretórios do projeto, seguindo os 
 /app
 │
 ├── /core
-│   ├── /domain            # Entidades do domínio
-│   ├── /use_cases         # Casos de uso
+│   ├── /entities          # Entidades do domínio
+│   ├── /interfaces        # Interfaces genericas
 │   └── /repositories      # Interfaces de repositório
+│   └── /services          # Servicos de tratamento
+│   └── /use_cases         # Casos de uso
+│   └── /validators        # Validacoes
 ├── /adapters
 │   └── /repositories      # Implementações concretas dos repositórios
-├── /controllers           # Controladores para as rotas
 ├── /infrastructure        # Configurações e inicialização
 └── /entrypoints
-    └── /flask_app         # Ponto de entrada do Flask e definição de rotas
+    └── /app               # Ponto de entrada do Flask e definição de rotas
+        └── /controllers   # Controler das rotas
+        └── /routes        # rotas
 ```
 
 ## Dependências do Projeto
@@ -176,10 +179,11 @@ Aqui está uma visão geral da estrutura de diretórios do projeto, seguindo os 
 O projeto usa as seguintes dependências, que são gerenciadas no arquivo `requirements.txt`:
 
 - **Flask**: Framework web utilizado.
+- **Faker**: Geracao de dados fake para produtos.
 - **Flask-SQLAlchemy**: Integração do SQLAlchemy com o Flask.
 - **psycopg2-binary**: Driver para PostgreSQL.
 - **Flask-JWT-Extended**: Autenticação via JWT.
 - **Flask-Caching**: Gerenciamento de cache com Redis.
 - **python-dotenv**: Para carregar variáveis de ambiente do arquivo `.env`.
 
-Você pode ver todas as dependências no arquivo `requirements.txt`:
+Você pode ver todas as dependências no arquivo `requirements.txt`.
