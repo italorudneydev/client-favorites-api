@@ -1,8 +1,8 @@
 from flask import Flask
 from dotenv import load_dotenv
 import os
-from app.core.repositories.client_repository import ClientRepository
-from app.core.repositories.product_repository import ProductRepository
+from app.adapters.repositories.client_repository import ClientRepository
+from app.adapters.repositories.product_repository import ProductRepository
 from app.infrastructure.config import DevelopmentConfig, ProductionConfig, TestingConfig
 from app.infrastructure.extensions import db, jwt, cache
 from app.infrastructure.cache import RedisCache
